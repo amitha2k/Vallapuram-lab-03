@@ -11,6 +11,7 @@ format:
 execute:
     echo: false
     warning: false
+    message: false
 ---
 
 ```{r, load libraries}
@@ -27,6 +28,8 @@ library(performance)
 library(gt)
 ```
 
+## Data
+
 ```{r, load data}
 # The attitude dataset is built into R (datasets package), so no file import is needed.
 # Keep only the outcome (rating) and the three predictors used in this lab.
@@ -34,6 +37,8 @@ library(gt)
 attitude.data <- attitude |>
   select(rating, complaints, learning, raises)
 ```
+
+### Exploratory Analysis
 
 ```{r, descriptives}
 descriptives <- attitude.data |>
@@ -86,6 +91,8 @@ All three predictors were positively associated with overall workplace ratings, 
 
 These patterns are consistent with expectations: complaint handling reflects how responsive management is to employees, which is something employees are likely to expect regardless of their own performance. Learning opportunities and performance based raises on the other hand can depend on employees’ own effort, so they may shape overall impressions of the workplace less directly.
 
+## Model Specification
+
 **2.1: Developing my Predictions**
 
 I expected the handling of employee complaints to be the strongest predictor of overall workplace ratings, because it reflects how responsive management is to employees’ concerns, an aspect of the workplace that affects all employees regardless of their role or performance. I expected opportunities to learn to explain additional variation beyond complaint handling, since learning captures a distinct aspect of the workplace. However, because departments with responsive management may also tend to offer more learning opportunities, I expected part of the learning effect to overlap with complaint handling, so its unique contribution should be smaller than its association with ratings on its own. Finally, I expected performance-based raises to add relatively little once complaints and learning were accounted for, since they depend partly on employees’ own performance and they might not be strongly connected to quality of management.
@@ -100,7 +107,9 @@ m3 <- lm(rating ~ complaints + learning + raises, data = attitude.data)  # M3: E
 
 **2.3: Exploring the fitted models**
 
-In M1, the complaints coefficient (*b* = 0.76) represents the overall association between complaint handling and ratings: a one-percentage-point increase in favourable responses about complaint handling was associated with a 0.76-point higher overall rating. In M2, after adding learning opportunities, the coefficient dropped to 0.64. It now represents the association between complaint handling and ratings for departments with the same level of learning opportunities. The decrease suggests that part of the M1 association was shared with learning, since departments that handle complaints well also tend to offer more learning opportunities. Adding performance-based raises in M3 left the complaints coefficient essentially unchanged (*b* = 0.65), and the raises coefficient itself was close to zero. This suggests that raises add little beyond complaints and learning.
+In M1, the complaints coefficient reflects the overall association between complaint handling and ratings. When learning was added in M2, the coefficient decreased somewhat, because it now reflects complaint handling among departments with similar learning opportunities. This suggests that part of the original association was shared with learning. Adding raises in M3 left the complaints coefficient essentially unchanged, suggesting that raises add little beyond the other two predictors. Throughout, complaint handling remained a strong positive predictor.
+
+## Model Comparison
 
 ```{r, nested F tests}
 # Comparing all models
@@ -113,8 +122,6 @@ nested.tests <- anova(m0, m1, m2, m3) |>
     `Nested F`    = F,
     `Nested p`    = `Pr(>F)`
   )
-
-nested.tests
 ```
 
 ```{r, model performance}
@@ -132,16 +139,12 @@ model.performance <- bind_rows(
     sqrt(mean(residuals(m3)^2))
   )) |>
   select(Model, r.squared, adj.r.squared, RMSE)
-
-model.performance
 ```
 
 ```{r, delta r squared}
 # Change in R-squared relative to the preceding model
 model.performance <- model.performance |>
   mutate(delta.r.squared = r.squared - lag(r.squared))
-
-model.performance
 ```
 
 ```{r, model comparison table}
@@ -161,6 +164,8 @@ model.comparison |>
 
 M2 and M3 explained the most variation in overall ratings, but almost all of it came from complaint handling. M1 alone explained about 68% of the variation, a large and significant improvement over the null model. Adding learning opportunities explained only about 3% more, and this improvement was not statistically significant. Adding performance-based raises explained virtually nothing further. Adjusted R² rose slightly from M1 to M2 but fell in M3, indicating that raises did not justify the added complexity. Likewise, RMSE dropped substantially from the null model to M1, but the further reductions in M2 and M3 were too small to be meaningful. Overall, complaint handling is the main predictor of workplace ratings, with learning and raises adding little beyond it.
 
+## Regression Diagnostics
+
 ```{r, diagnostics}
 #| fig-height: 10
 check_model(m2)
@@ -169,11 +174,13 @@ check_collinearity(m2)
 
 **4.2: Diagnostic Findings**
 
-Diagnostic plots for M2 suggested that most regression assumptions were reasonably satisfied. The residuals showed no systematic curvature, supporting a linear relationship, and they were approximately normally distributed. No department had undue influence on the fitted model; the most influential observation was the lowest-rated department noted earlier, but its influence was well below conventional thresholds. Multicollinearity was low, so although complaint handling and learning opportunities are correlated, their separate contributions can still be estimated. The main concern was heteroscedasticity: residual variability was larger for departments with lower predicted ratings, so the model’s predictions are less precise for poorly rated departments. This could make the standard errors, and therefore the p-values and confidence intervals, somewhat inaccurate. However, the coefficient estimates themselves remain unbiased, and with only 30 departments this pattern may partly reflect a few low-rated departments. Overall, the diagnostics do not substantially undermine confidence in the model, but inferences about learning opportunities, whose effect was already uncertain, should be interpreted cautiously.
+Diagnostic plots for M2 suggested that most assumptions were reasonably satisfied. The residuals showed no curvature and were approximately normal, no department had undue influence, and multicollinearity was low. The main concern was heteroscedasticity: residuals varied more for departments with lower predicted ratings, which may make the standard errors and confidence intervals somewhat inaccurate. Because the coefficient estimates remain unbiased, this does not substantially undermine the model, but the already uncertain effect of learning should be interpreted cautiously.
+
+## Preferred Model
 
 **5.1: Selecting a model**
 
-I selected M2 (complaints and learning) as the preferred model. M3 can be ruled out: adding performance-based raises explained essentially no additional variation, was not statistically significant, and lowered adjusted R², so it added complexity without improving fit. The choice between M1 and M2 is less clear. Adding learning did not significantly improve fit, and the gains in R² and RMSE were small, which favours the simpler M1. However, M2 had the highest adjusted R² of the four models, indicating that the improvement in fit outweighed the cost of the extra predictor. Including learning also makes the model more substantively interpretable, because it estimates the association between complaint handling and ratings while holding learning opportunities constant, rather than letting complaint handling absorb variation shared with learning. The diagnostics supported this choice: multicollinearity between the two predictors was low, and no observations were unduly influential. Given that the evidence for learning is uncertain, its coefficient should be interpreted cautiously, but M2 provides the most informative and still parsimonious account of overall workplace ratings.
+I selected M2 (complaints and learning) as the preferred model. M3 was ruled out because adding raises explained no additional variation and lowered adjusted R². Although adding learning did not significantly improve on M1, M2 had the highest adjusted R² of all four models. It also estimates the effect of complaint handling while holding learning constant, which makes it more informative. The diagnostics supported this choice, showing low multicollinearity and no influential observations. M2 therefore offers the best balance of fit and simplicity, although the learning coefficient should be interpreted cautiously.
 
 ```{r, coefficient table}
 m2.coefs <- tidy(m2, conf.int = TRUE)
@@ -189,16 +196,22 @@ comp <- m2.coefs |> filter(term == "complaints")
 learn <- m2.coefs |> filter(term == "learning")
 ```
 
+**5.3 Interpreting Coefficients**
+
 Both predictors were positively associated with overall workplace ratings. Holding learning opportunities constant, a one-percentage-point increase in favourable responses about complaint handling was associated with a `{r} round(pull(comp, estimate), 2)`-point increase in a department's overall rating (95% CI \[`{r} round(pull(comp, conf.low), 2)`, `{r} round(pull(comp, conf.high), 2)`\]). This interval lies entirely above zero, so complaint handling has a clearly positive association with ratings. Holding complaint handling constant, a one-percentage-point increase in favourable responses about learning opportunities was associated with a `{r} round(pull(learn, estimate), 2)`-point increase in overall rating (95% CI \[`{r} round(pull(learn, conf.low), 2)`, `{r} round(pull(learn, conf.high), 2)`\]). However, this interval includes zero, so the data are consistent with learning having a small positive association, no association, or even a slight negative one. Its unique contribution beyond complaint handling therefore remains uncertain.
 
 ```{r, m2 performance}
 m2.perf <- model.performance |> filter(Model == "M2: Complaints + Learning")
 ```
 
+**5.4 Summarizing model performance**
+
 The selected model explained `{r} round(pull(m2.perf, r.squared) * 100, 1)`% of the variation in overall workplace ratings across departments (adjusted R² = `{r} round(pull(m2.perf, adj.r.squared), 2)`). This means complaint handling and learning opportunities together account for most of the differences in how departments rate their workplace. Adjusted R² is only slightly lower than R², indicating that the fit is not inflated by unnecessary predictors. The RMSE of `{r} round(pull(m2.perf, RMSE), 2)` means the model's predicted ratings typically differ from departments' actual ratings by about this many points. Given that ratings ranged from 40 to 85, this is a moderate level of error: the model captures the main pattern well, but it cannot predict any single department's rating precisely.
+
+## Discussion
 
 **Part 6- Findings and Limitations**
 
-These results suggest that complaint handling is by far the most important of the three predictors of overall workplace ratings. It accounted for most of the explained variation and remained a strong predictor regardless of which other variables were included. Learning opportunities appeared to play a smaller supporting role, but their unique contribution was uncertain once complaint handling was taken into account. Performance-based raises added nothing beyond the other two predictors, likely because they overlap with what complaints and learning already capture. Together, this suggests that how responsive management is to employees matters more for overall impressions of a workplace than opportunities for growth or reward.
+These results suggest that complaint handling is by far the most important predictor of overall workplace ratings, explaining most of the variation regardless of which other predictors were included. Learning opportunities may play a smaller role, but their unique contribution was uncertain, and performance-based raises added nothing beyond the other two. Overall, how responsive management is to employees appears to matter more than opportunities for growth or reward.
 
-Several limitations should be considered. With only 30 departments, the estimates are imprecise, and the study may have lacked the power to detect smaller effects such as that of learning. Because the data are department-level averages, the results describe differences between departments and may not apply to individual employees. The data are also cross-sectional and observational, so the associations cannot be interpreted as causal; for example, employees who already rate their workplace highly may also view its complaint handling more favourably. Finally, the unequal residual variance identified in the diagnostics means the standard errors and confidence intervals may be somewhat inaccurate, particularly for lower-rated departments.
+These conclusions are limited by the small sample of 30 departments, which may have been too small to detect weaker effects such as learning. Because the data are department-level averages, the findings may not apply to individual employees, and because they are observational, the associations cannot be interpreted as causal. Finally, the unequal residual variance found in the diagnostics may make the confidence intervals somewhat inaccurate.

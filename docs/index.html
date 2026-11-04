@@ -89,8 +89,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#quarto" id="toc-quarto" class="nav-link active" data-scroll-target="#quarto">Quarto</a></li>
-  <li><a href="#running-code" id="toc-running-code" class="nav-link" data-scroll-target="#running-code">Running Code</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data">Data</a>
+  <ul class="collapse">
+  <li><a href="#exploratory-analysis" id="toc-exploratory-analysis" class="nav-link" data-scroll-target="#exploratory-analysis">Exploratory Analysis</a></li>
+  </ul></li>
+  <li><a href="#model-specification" id="toc-model-specification" class="nav-link" data-scroll-target="#model-specification">Model Specification</a></li>
+  <li><a href="#model-comparison" id="toc-model-comparison" class="nav-link" data-scroll-target="#model-comparison">Model Comparison</a></li>
+  <li><a href="#regression-diagnostics" id="toc-regression-diagnostics" class="nav-link" data-scroll-target="#regression-diagnostics">Regression Diagnostics</a></li>
+  <li><a href="#preferred-model" id="toc-preferred-model" class="nav-link" data-scroll-target="#preferred-model">Preferred Model</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   </ul>
 </nav>
     </div>
@@ -128,25 +135,1630 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="quarto" class="level2">
-<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<section id="exploratory-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="exploratory-analysis">Exploratory Analysis</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div id="boumerwjqc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#boumerwjqc table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#boumerwjqc thead, #boumerwjqc tbody, #boumerwjqc tfoot, #boumerwjqc tr, #boumerwjqc td, #boumerwjqc th {
+  border-style: none;
+}
+
+#boumerwjqc p {
+  margin: 0;
+  padding: 0;
+}
+
+#boumerwjqc .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#boumerwjqc .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#boumerwjqc .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#boumerwjqc .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#boumerwjqc .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#boumerwjqc .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#boumerwjqc .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#boumerwjqc .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#boumerwjqc .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#boumerwjqc .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#boumerwjqc .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#boumerwjqc .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#boumerwjqc .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#boumerwjqc .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#boumerwjqc .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#boumerwjqc .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#boumerwjqc .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#boumerwjqc .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#boumerwjqc .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#boumerwjqc .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#boumerwjqc .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#boumerwjqc .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#boumerwjqc .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#boumerwjqc .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#boumerwjqc .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#boumerwjqc .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#boumerwjqc .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#boumerwjqc .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#boumerwjqc .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#boumerwjqc .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#boumerwjqc .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#boumerwjqc .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#boumerwjqc .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#boumerwjqc .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#boumerwjqc .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#boumerwjqc .gt_left {
+  text-align: left;
+}
+
+#boumerwjqc .gt_center {
+  text-align: center;
+}
+
+#boumerwjqc .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#boumerwjqc .gt_font_normal {
+  font-weight: normal;
+}
+
+#boumerwjqc .gt_font_bold {
+  font-weight: bold;
+}
+
+#boumerwjqc .gt_font_italic {
+  font-style: italic;
+}
+
+#boumerwjqc .gt_super {
+  font-size: 65%;
+}
+
+#boumerwjqc .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#boumerwjqc .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#boumerwjqc .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#boumerwjqc .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#boumerwjqc .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#boumerwjqc .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#boumerwjqc .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#boumerwjqc .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#boumerwjqc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border">Descriptive Statistics for Analysis Variables</td>
+</tr>
+<tr class="gt_col_headings even">
+<th id="Variable" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Variable</th>
+<th id="Mean" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Mean</th>
+<th id="SD" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">SD</th>
+<th id="Min" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Min</th>
+<th id="Max" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Max</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">complaints</td>
+<td class="gt_row gt_right" headers="Mean">66.60</td>
+<td class="gt_row gt_right" headers="SD">13.31</td>
+<td class="gt_row gt_right" headers="Min">37</td>
+<td class="gt_row gt_right" headers="Max">90</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">learning</td>
+<td class="gt_row gt_right" headers="Mean">56.37</td>
+<td class="gt_row gt_right" headers="SD">11.74</td>
+<td class="gt_row gt_right" headers="Min">34</td>
+<td class="gt_row gt_right" headers="Max">75</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">raises</td>
+<td class="gt_row gt_right" headers="Mean">64.63</td>
+<td class="gt_row gt_right" headers="SD">10.40</td>
+<td class="gt_row gt_right" headers="Min">43</td>
+<td class="gt_row gt_right" headers="Max">88</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Variable">rating</td>
+<td class="gt_row gt_right" headers="Mean">64.63</td>
+<td class="gt_row gt_right" headers="SD">12.17</td>
+<td class="gt_row gt_right" headers="Min">40</td>
+<td class="gt_row gt_right" headers="Max">85</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/rating histogram-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/scatterplots-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/scatterplots-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/scatterplots-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>1.4: Exploration of the Data</strong></p>
+<p>All three predictors were positively associated with overall workplace ratings, and each relationship appeared approximately linear. Handling of employee complaints showed the strongest association, followed by opportunity to learn and performance-based raises based on the graphs. The raises relationship in particular showed more scatter around the fitted line. No departments appeared to be extreme outliers. With only 30 departments, individual observations may still carry influence, so this is examined further in the regression diagnostics.</p>
+<p>These patterns are consistent with expectations: complaint handling reflects how responsive management is to employees, which is something employees are likely to expect regardless of their own performance. Learning opportunities and performance based raises on the other hand can depend on employees’ own effort, so they may shape overall impressions of the workplace less directly.</p>
 </section>
-<section id="running-code" class="level2">
-<h2 class="anchored" data-anchor-id="running-code">Running Code</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
+</section>
+<section id="model-specification" class="level2">
+<h2 class="anchored" data-anchor-id="model-specification">Model Specification</h2>
+<p><strong>2.1: Developing my Predictions</strong></p>
+<p>I expected the handling of employee complaints to be the strongest predictor of overall workplace ratings, because it reflects how responsive management is to employees’ concerns, an aspect of the workplace that affects all employees regardless of their role or performance. I expected opportunities to learn to explain additional variation beyond complaint handling, since learning captures a distinct aspect of the workplace. However, because departments with responsive management may also tend to offer more learning opportunities, I expected part of the learning effect to overlap with complaint handling, so its unique contribution should be smaller than its association with ratings on its own. Finally, I expected performance-based raises to add relatively little once complaints and learning were accounted for, since they depend partly on employees’ own performance and they might not be strongly connected to quality of management.</p>
+<p><strong>2.3: Exploring the fitted models</strong></p>
+<p>In M1, the complaints coefficient reflects the overall association between complaint handling and ratings. When learning was added in M2, the coefficient decreased somewhat, because it now reflects complaint handling among departments with similar learning opportunities. This suggests that part of the original association was shared with learning. Adding raises in M3 left the complaints coefficient essentially unchanged, suggesting that raises add little beyond the other two predictors. Throughout, complaint handling remained a strong positive predictor.</p>
+</section>
+<section id="model-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="model-comparison">Model Comparison</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<div class="cell-output-display">
+<div id="kcywajhpfp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kcywajhpfp table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#kcywajhpfp thead, #kcywajhpfp tbody, #kcywajhpfp tfoot, #kcywajhpfp tr, #kcywajhpfp td, #kcywajhpfp th {
+  border-style: none;
+}
+
+#kcywajhpfp p {
+  margin: 0;
+  padding: 0;
+}
+
+#kcywajhpfp .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#kcywajhpfp .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#kcywajhpfp .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#kcywajhpfp .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#kcywajhpfp .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#kcywajhpfp .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kcywajhpfp .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#kcywajhpfp .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#kcywajhpfp .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#kcywajhpfp .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#kcywajhpfp .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#kcywajhpfp .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#kcywajhpfp .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#kcywajhpfp .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#kcywajhpfp .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#kcywajhpfp .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#kcywajhpfp .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#kcywajhpfp .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#kcywajhpfp .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kcywajhpfp .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#kcywajhpfp .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#kcywajhpfp .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#kcywajhpfp .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kcywajhpfp .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#kcywajhpfp .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#kcywajhpfp .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kcywajhpfp .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kcywajhpfp .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#kcywajhpfp .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kcywajhpfp .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#kcywajhpfp .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#kcywajhpfp .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#kcywajhpfp .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kcywajhpfp .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#kcywajhpfp .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#kcywajhpfp .gt_left {
+  text-align: left;
+}
+
+#kcywajhpfp .gt_center {
+  text-align: center;
+}
+
+#kcywajhpfp .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#kcywajhpfp .gt_font_normal {
+  font-weight: normal;
+}
+
+#kcywajhpfp .gt_font_bold {
+  font-weight: bold;
+}
+
+#kcywajhpfp .gt_font_italic {
+  font-style: italic;
+}
+
+#kcywajhpfp .gt_super {
+  font-size: 65%;
+}
+
+#kcywajhpfp .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#kcywajhpfp .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#kcywajhpfp .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#kcywajhpfp .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#kcywajhpfp .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#kcywajhpfp .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#kcywajhpfp .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#kcywajhpfp .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#kcywajhpfp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="gt_heading header">
+<td colspan="9" class="gt_heading gt_title gt_font_normal gt_bottom_border">Comparison of Nested Regression Models</td>
+</tr>
+<tr class="gt_col_headings gt_spanner_row even">
+<th rowspan="2" id="Model" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Model</th>
+<th colspan="4" id="Overall Model Performance" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+Overall Model Performance
+</div></th>
+<th colspan="4" id="Incremental Improvement in Fit" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+Incremental Improvement in Fit
+</div></th>
+</tr>
+<tr class="gt_col_headings header">
+<th id="r.squared" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">r.squared</th>
+<th id="adj.r.squared" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">adj.r.squared</th>
+<th id="RMSE" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">RMSE</th>
+<th id="Residual-df" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Residual df</th>
+<th id="delta.r.squared" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">delta.r.squared</th>
+<th id="Nested-df" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Nested df</th>
+<th id="Nested-F" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Nested F</th>
+<th id="Nested-p" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Nested p</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Model">M0: Null</td>
+<td class="gt_row gt_right" headers="r.squared">0.000</td>
+<td class="gt_row gt_right" headers="adj.r.squared">0.000</td>
+<td class="gt_row gt_right" headers="RMSE">11.968</td>
+<td class="gt_row gt_right" headers="Residual df">29</td>
+<td class="gt_row gt_right" headers="delta.r.squared">NA</td>
+<td class="gt_row gt_right" headers="Nested df">NA</td>
+<td class="gt_row gt_right" headers="Nested F">NA</td>
+<td class="gt_row gt_right" headers="Nested p">NA</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Model">M1: Complaints</td>
+<td class="gt_row gt_right" headers="r.squared">0.681</td>
+<td class="gt_row gt_right" headers="adj.r.squared">0.670</td>
+<td class="gt_row gt_right" headers="RMSE">6.756</td>
+<td class="gt_row gt_right" headers="Residual df">28</td>
+<td class="gt_row gt_right" headers="delta.r.squared">0.681</td>
+<td class="gt_row gt_right" headers="Nested df">1</td>
+<td class="gt_row gt_right" headers="Nested F">60.726</td>
+<td class="gt_row gt_right" headers="Nested p">0.000</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Model">M2: Complaints + Learning</td>
+<td class="gt_row gt_right" headers="r.squared">0.708</td>
+<td class="gt_row gt_right" headers="adj.r.squared">0.686</td>
+<td class="gt_row gt_right" headers="RMSE">6.467</td>
+<td class="gt_row gt_right" headers="Residual df">27</td>
+<td class="gt_row gt_right" headers="delta.r.squared">0.027</td>
+<td class="gt_row gt_right" headers="Nested df">1</td>
+<td class="gt_row gt_right" headers="Nested F">2.380</td>
+<td class="gt_row gt_right" headers="Nested p">0.135</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Model">M3: Expanded</td>
+<td class="gt_row gt_right" headers="r.squared">0.708</td>
+<td class="gt_row gt_right" headers="adj.r.squared">0.675</td>
+<td class="gt_row gt_right" headers="RMSE">6.464</td>
+<td class="gt_row gt_right" headers="Residual df">26</td>
+<td class="gt_row gt_right" headers="delta.r.squared">0.000</td>
+<td class="gt_row gt_right" headers="Nested df">1</td>
+<td class="gt_row gt_right" headers="Nested F">0.025</td>
+<td class="gt_row gt_right" headers="Nested p">0.876</td>
+</tr>
+</tbody>
+</table>
+
 </div>
 </div>
-<p>You can add options to executable code like this</p>
+</div>
+<p><strong>3.5: Interpret the comparisons</strong></p>
+<p>M2 and M3 explained the most variation in overall ratings, but almost all of it came from complaint handling. M1 alone explained about 68% of the variation, a large and significant improvement over the null model. Adding learning opportunities explained only about 3% more, and this improvement was not statistically significant. Adding performance-based raises explained virtually nothing further. Adjusted R² rose slightly from M1 to M2 but fell in M3, indicating that raises did not justify the added complexity. Likewise, RMSE dropped substantially from the null model to M1, but the further reductions in M2 and M3 were too small to be meaningful. Overall, complaint handling is the main predictor of workplace ratings, with learning and raises adding little beyond it.</p>
+</section>
+<section id="regression-diagnostics" class="level2">
+<h2 class="anchored" data-anchor-id="regression-diagnostics">Regression Diagnostics</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/diagnostics-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["VIF"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["VIF_CI_low"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["VIF_CI_high"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["SE_factor"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Tolerance"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Tolerance_CI_low"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Tolerance_CI_high"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"complaints","2":"1.553021","3":"1.179234","4":"2.70633","5":"1.246203","6":"0.6439064","7":"0.3695041","8":"0.8480083"},{"1":"learning","2":"1.553021","3":"1.179234","4":"2.70633","5":"1.246203","6":"0.6439064","7":"0.3695041","8":"0.8480083"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><strong>4.2: Diagnostic Findings</strong></p>
+<p>Diagnostic plots for M2 suggested that most assumptions were reasonably satisfied. The residuals showed no curvature and were approximately normal, no department had undue influence, and multicollinearity was low. The main concern was heteroscedasticity: residuals varied more for departments with lower predicted ratings, which may make the standard errors and confidence intervals somewhat inaccurate. Because the coefficient estimates remain unbiased, this does not substantially undermine the model, but the already uncertain effect of learning should be interpreted cautiously.</p>
+</section>
+<section id="preferred-model" class="level2">
+<h2 class="anchored" data-anchor-id="preferred-model">Preferred Model</h2>
+<p><strong>5.1: Selecting a model</strong></p>
+<p>I selected M2 (complaints and learning) as the preferred model. M3 was ruled out because adding raises explained no additional variation and lowered adjusted R². Although adding learning did not significantly improve on M1, M2 had the highest adjusted R² of all four models. It also estimates the effect of complaint handling while holding learning constant, which makes it more informative. The diagnostics supported this choice, showing low multicollinearity and no influential observations. M2 therefore offers the best balance of fit and simplicity, although the learning coefficient should be interpreted cautiously.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="mawgalaiyj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mawgalaiyj table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#mawgalaiyj thead, #mawgalaiyj tbody, #mawgalaiyj tfoot, #mawgalaiyj tr, #mawgalaiyj td, #mawgalaiyj th {
+  border-style: none;
+}
+
+#mawgalaiyj p {
+  margin: 0;
+  padding: 0;
+}
+
+#mawgalaiyj .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#mawgalaiyj .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#mawgalaiyj .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#mawgalaiyj .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#mawgalaiyj .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mawgalaiyj .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mawgalaiyj .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mawgalaiyj .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#mawgalaiyj .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#mawgalaiyj .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#mawgalaiyj .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#mawgalaiyj .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#mawgalaiyj .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#mawgalaiyj .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#mawgalaiyj .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mawgalaiyj .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#mawgalaiyj .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#mawgalaiyj .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#mawgalaiyj .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mawgalaiyj .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#mawgalaiyj .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#mawgalaiyj .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#mawgalaiyj .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mawgalaiyj .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#mawgalaiyj .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#mawgalaiyj .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mawgalaiyj .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mawgalaiyj .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#mawgalaiyj .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mawgalaiyj .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#mawgalaiyj .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mawgalaiyj .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mawgalaiyj .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mawgalaiyj .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mawgalaiyj .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mawgalaiyj .gt_left {
+  text-align: left;
+}
+
+#mawgalaiyj .gt_center {
+  text-align: center;
+}
+
+#mawgalaiyj .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#mawgalaiyj .gt_font_normal {
+  font-weight: normal;
+}
+
+#mawgalaiyj .gt_font_bold {
+  font-weight: bold;
+}
+
+#mawgalaiyj .gt_font_italic {
+  font-style: italic;
+}
+
+#mawgalaiyj .gt_super {
+  font-size: 65%;
+}
+
+#mawgalaiyj .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#mawgalaiyj .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#mawgalaiyj .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#mawgalaiyj .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#mawgalaiyj .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#mawgalaiyj .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#mawgalaiyj .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#mawgalaiyj .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#mawgalaiyj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border">Coefficients for M2: Predicting Overall Workplace Rating</td>
+</tr>
+<tr class="gt_col_headings even">
+<th id="term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">term</th>
+<th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">estimate</th>
+<th id="std.error" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">std.error</th>
+<th id="conf.low" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">conf.low</th>
+<th id="conf.high" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">conf.high</th>
+<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">p.value</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="term">(Intercept)</td>
+<td class="gt_row gt_right" headers="estimate">9.8708805</td>
+<td class="gt_row gt_right" headers="std.error">7.0612236</td>
+<td class="gt_row gt_right" headers="conf.low">-4.61755361</td>
+<td class="gt_row gt_right" headers="conf.high">24.3593145</td>
+<td class="gt_row gt_right" headers="p.value">1.735231e-01</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="term">complaints</td>
+<td class="gt_row gt_right" headers="estimate">0.6435176</td>
+<td class="gt_row gt_right" headers="std.error">0.1184774</td>
+<td class="gt_row gt_right" headers="conf.low">0.40042203</td>
+<td class="gt_row gt_right" headers="conf.high">0.8866132</td>
+<td class="gt_row gt_right" headers="p.value">9.573795e-06</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="term">learning</td>
+<td class="gt_row gt_right" headers="estimate">0.2111918</td>
+<td class="gt_row gt_right" headers="std.error">0.1344037</td>
+<td class="gt_row gt_right" headers="conf.low">-0.06458185</td>
+<td class="gt_row gt_right" headers="conf.high">0.4869655</td>
+<td class="gt_row gt_right" headers="p.value">1.277539e-01</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p><strong>5.3 Interpreting Coefficients</strong></p>
+<p>Both predictors were positively associated with overall workplace ratings. Holding learning opportunities constant, a one-percentage-point increase in favourable responses about complaint handling was associated with a 0.64-point increase in a department’s overall rating (95% CI [0.4, 0.89]). This interval lies entirely above zero, so complaint handling has a clearly positive association with ratings. Holding complaint handling constant, a one-percentage-point increase in favourable responses about learning opportunities was associated with a 0.21-point increase in overall rating (95% CI [-0.06, 0.49]). However, this interval includes zero, so the data are consistent with learning having a small positive association, no association, or even a slight negative one. Its unique contribution beyond complaint handling therefore remains uncertain.</p>
+<p><strong>5.4 Summarizing model performance</strong></p>
+<p>The selected model explained 70.8% of the variation in overall workplace ratings across departments (adjusted R² = 0.69). This means complaint handling and learning opportunities together account for most of the differences in how departments rate their workplace. Adjusted R² is only slightly lower than R², indicating that the fit is not inflated by unnecessary predictors. The RMSE of 6.47 means the model’s predicted ratings typically differ from departments’ actual ratings by about this many points. Given that ratings ranged from 40 to 85, this is a moderate level of error: the model captures the main pattern well, but it cannot predict any single department’s rating precisely.</p>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p><strong>Part 6- Findings and Limitations</strong></p>
+<p>These results suggest that complaint handling is by far the most important predictor of overall workplace ratings, explaining most of the variation regardless of which other predictors were included. Learning opportunities may play a smaller role, but their unique contribution was uncertain, and performance-based raises added nothing beyond the other two. Overall, how responsive management is to employees appears to matter more than opportunities for growth or reward.</p>
+<p>These conclusions are limited by the small sample of 30 departments, which may have been too small to detect weaker effects such as learning. Because the data are department-level averages, the findings may not apply to individual employees, and because they are observational, the associations cannot be interpreted as causal. Finally, the unequal residual variance found in the diagnostics may make the confidence intervals somewhat inaccurate.</p>
 
 
 </section>
