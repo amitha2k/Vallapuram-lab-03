@@ -13,23 +13,91 @@ execute:
     warning: false
 ---
 
-## Quarto
+```{r, load libraries}
+#| output: FALSE
+# Output false ensures your reproducible document does not show all of your code!
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+# Remember to install packages you do not already have
 
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(broom)
+library(performance)
+library(gt)
 ```
 
-You can add options to executable code like this
+```{r, load data}
+# The attitude dataset is built into R (datasets package), so no file import is needed.
+# Keep only the outcome (rating) and the three predictors used in this lab.
 
-```{r}
-#| echo: false
-2 * 2
+attitude.data <- attitude |>
+  select(rating, complaints, learning, raises)
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+```{r, descriptives}
+descriptives <- attitude.data |>
+  pivot_longer(everything(), names_to = "Variable", values_to = "Value") |>
+  group_by(Variable) |>
+  summarise(
+    Mean = mean(Value),
+    SD   = sd(Value),
+    Min  = min(Value),
+    Max  = max(Value)
+  )
+
+descriptives |>
+  gt() |>
+  tab_header(title = "Descriptive Statistics for Analysis Variables") |>
+  fmt_number(columns = c(Mean, SD), decimals = 2)
+```
+
+```{r, rating histogram}
+ggplot(attitude.data, aes(x = rating)) +
+  geom_histogram(aes(y = after_stat(density)), bins = 10) +
+  geom_density(linewidth = 1) +
+  labs(title = "Distribution of Overall Workplace Ratings",
+       x = "Overall rating", y = "Density")
+```
+
+```{r, scatterplots}
+ggplot(attitude.data, aes(x = complaints, y = rating)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(title = "Overall Rating by Complaint Handling",
+       x = "Handling of complaints", y = "Overall rating")
+
+ggplot(attitude.data, aes(x = learning, y = rating)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(title = "Overall Rating by Opportunity to Learn",
+       x = "Opportunity to learn", y = "Overall rating")
+
+ggplot(attitude.data, aes(x = raises, y = rating)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(title = "Overall Rating by Pay Increases",
+       x = "Pay Increases", y = "Overall rating")
+```
+
+**1.4: Exploration of the Data**
+
+All three predictors were positively associated with overall workplace ratings, and each relationship appeared approximately linear. Handling of employee complaints showed the strongest association, followed by opportunity to learn and performance-based raises based on the graphs. The raises relationship in particular showed more scatter around the fitted line. No departments appeared to be extreme outliers. With only 30 departments, individual observations may still carry influence, so this is examined further in the regression diagnostics.
+
+These patterns are consistent with expectations: complaint handling reflects how responsive management is to employees, which is something employees are likely to expect regardless of their own performance. Learning opportunities and performance based raises on the other hand can depend on employees’ own effort, so they may shape overall impressions of the workplace less directly.
+
+**2.1: Developing my Predictions**
+
+I expected the handling of employee complaints to be the strongest predictor of overall workplace ratings, because it reflects how responsive management is to employees’ concerns, an aspect of the workplace that affects all employees regardless of their role or performance. I expected opportunities to learn to explain additional variation beyond complaint handling, since learning captures a distinct aspect of the workplace. However, because departments with responsive management may also tend to offer more learning opportunities, I expected part of the learning effect to overlap with complaint handling, so its unique contribution should be smaller than its association with ratings on its own. Finally, I expected performance-based raises to add relatively little once complaints and learning were accounted for, since they depend partly on employees’ own performance and they might not be strongly connected to quality of management.
+
+```{r, fit models}
+
+m0 <- lm(rating ~ 1, data = attitude.data)        # M0: Null (intercept only)
+m1 <- lm(rating ~ complaints, data = attitude.data)     # M1: Complaints
+m2 <- lm(rating ~ complaints + learning, data = attitude.data)  # M2: Complaints + Learning
+m3 <- lm(rating ~ complaints + learning + raises, data = attitude.data)  # M3: Expanded
+```
+
+**2.3: Exploring the fitted models**
+
+In M1, the complaints coefficient (*b* = 0.76) represents the overall association between complaint handling and ratings: a one-percentage-point increase in favourable responses about complaint handling was associated with a 0.76-point higher overall rating. In M2, after adding learning opportunities, the coefficient dropped to 0.64. It now represents the association between complaint handling and ratings for departments with the same level of learning opportunities. The decrease suggests that part of the M1 association was shared with learning, since departments that handle complaints well also tend to offer more learning opportunities. Adding performance-based raises in M3 left the complaints coefficient essentially unchanged (*b* = 0.65), and the raises coefficient itself was close to zero. This suggests that raises add little beyond complaints and learning.
